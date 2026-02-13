@@ -1,34 +1,26 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const Database = require('better-sqlite3');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// --- Database setup (SQLite file in project root) ---
-const dbPath = path.join(__dirname, 'veltrynox.db');
-const db = new Database(dbPath);
+// --- Simple file-based "database" (JSON) ---
+const dataPath = path.join(__dirname, 'contact_submissions.json');
 
-db.exec(`
-  CREATE TABLE IF NOT EXISTS contact_submissions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name TEXT NOT NULL,
-    email TEXT NOT NULL,
-    company TEXT,
-    role TEXT,
-    timeline TEXT,
-    message TEXT NOT NULL,
-    received_at TEXT NOT NULL
-  );
-`);
+function readSubmissions() {
+  try {
+    const raw = fs.readFileSync(dataPath, 'utf8');
+    return JSON.parse(raw);
+  } catch (err) {
+    return [];
+  }
+}
 
-const insertSubmission = db.prepare(`
-  INSERT INTO contact_submissions
-    (name, email, company, role, timeline, message, received_at)
-  VALUES
-    (@name, @email, @company, @role, @timeline, @message, @received_at)
-`);
+function writeSubmissions(list) {
+  fs.writeFileSync(dataPath, JSON.stringify(list, null, 2), 'utf8');
+}
 
 // Middleware
 app.use(cors());
@@ -37,7 +29,7 @@ app.use(express.json());
 // Serve static frontend (index.html, styles, scripts, etc.)
 app.use(express.static(__dirname));
 
-// Contact endpoint: stores submissions in SQLite
+// Contact endpoint: stores submissions in JSON file
 app.post('/api/contact', (req, res) => {
   const { name, email, company, role, timeline, message } = req.body || {};
 
@@ -48,7 +40,10 @@ app.post('/api/contact', (req, res) => {
     });
   }
 
+  const submissions = readSubmissions();
+
   const entry = {
+    id: submissions.length + 1,
     name,
     email,
     company: company || '',
@@ -58,9 +53,11 @@ app.post('/api/contact', (req, res) => {
     received_at: new Date().toISOString(),
   };
 
+  submissions.push(entry);
+
   try {
-    const result = insertSubmission.run(entry);
-    console.log('New contact submission stored with id:', result.lastInsertRowid);
+    writeSubmissions(submissions);
+    console.log('New contact submission stored with id:', entry.id);
   } catch (err) {
     console.error('Failed to store contact submission:', err);
     return res.status(500).json({
@@ -83,6 +80,6 @@ app.use((req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Veltrynox server listening on http://localhost:${PORT}`);
-  console.log(`Contact submissions are stored in SQLite at ${dbPath}`);
+  console.log(`Contact submissions are stored in JSON at ${dataPath}`);
 });
 
