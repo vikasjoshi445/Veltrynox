@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veltrynox – Modern Software Solutions</title>
+    <meta name="description"
+        content="Veltrynox builds modern, cloud‑native, AI‑powered software for ambitious teams. Launch faster, scale confidently, and delight your customers." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-elevated: #0b1120;
+            --bg-soft: rgba(15, 23, 42, 0.85);
+            --accent: #6366f1;
+            --accent-soft: rgba(99, 102, 241, 0.16);
+            --accent-strong: rgba(129, 140, 248, 0.7);
+            --accent-secondary: #22c55e;
+            --text: #e5e7eb;
+            --text-soft: #9ca3af;
+            --border-subtle: rgba(148, 163, 184, 0.35);
+            --danger: #f97373;
+            --radius-lg: 18px;
+            --radius-xl: 28px;
+            --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.65);
+            --nav-height: 72px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #111827 0, #020617 45%, #020617 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            /* Ensure content is not hidden behind the top bar */
+            padding-top: var(--nav-height);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* Layout */
+        .page-shell {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            backdrop-filter: blur(18px);
+            background: linear-gradient(to bottom,
+                    rgba(15, 23, 42, 0.9),
+                    rgba(15, 23, 42, 0.7),
+                    transparent);
+            border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+        }
+
+        .nav {
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-mark {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 25% 0,
+                    #a855f7 0,
+                    #6366f1 36%,
+                    #22c55e 70%,
+                    #22c55e 100%);
+            box-shadow:
+                0 0 0 1px rgba(148, 163, 184, 0.4),
+                0 12px 30px rgba(79, 70, 229, 0.7);
+        }
+
+        .logo-text-main {
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            font-size: 1.05rem;
+        }
+
+        .logo-text-tagline {
+            font-size: 0.72rem;
+            color: var(--accent-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-size: 0.92rem;
+        }
+
+        .nav-links a {
+            color: var(--text-soft);
+            position: relative;
+            padding-bottom: 0.3rem;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            transition: width 0.22s ease-out;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .nav-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            font-size: 0.72rem;
+            color: var(--text-soft);
+            gap: 0.45rem;
+        }
+
+        .nav-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 30%, #facc15 0, #22c55e 45%, #15803d 100%);
+            box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            padding: 0.65rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.18s ease-out;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-image: linear-gradient(120deg, #4f46e5, #6366f1, #22c55e);
+            color: white;
+            box-shadow:
+                0 14px 35px rgba(30, 64, 175, 0.6),
+                0 0 0 1px rgba(129, 140, 248, 0.7);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px);
+            box-shadow:
+                0 18px 45px rgba(30, 64, 175, 0.8),
+                0 0 0 1px rgba(191, 219, 254, 0.85);
+        }
+
+        .btn-ghost {
+            background: rgba(15, 23, 42, 0.8);
+            color: var(--text-soft);
+            border-color: rgba(148, 163, 184, 0.5);
+        }
+
+        .btn-ghost:hover {
+            border-color: rgba(209, 213, 219, 0.9);
+            color: var(--text);
+            background: rgba(15, 23, 42, 0.92);
+        }
+
+        .theme-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at 30% 0, rgba(251, 191, 36, 0.35), rgba(15, 23, 42, 1));
+            cursor: pointer;
+            color: var(--text-soft);
+            font-size: 0.9rem;
+            transition: all 0.18s ease-out;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text);
+            border-color: rgba(209, 213, 219, 0.9);
+            transform: translateY(-0.5px);
+        }
+
+        /* Mobile nav */
+        .nav-mobile-toggle {
+            display: none;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: 999px;
+            width: 36px;
+            height: 36px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--text-soft);
+        }
+
+        .nav-mobile-menu {
+            display: none;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 3.5rem 0 3rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(0, 1.05fr);
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            margin-bottom: 1rem;
+        }
+
+        .hero-badge-pill {
+            padding: 0.16rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(22, 163, 74, 0.18);
+            color: #bbf7d0;
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .hero-heading {
+            font-size: clamp(2.35rem, 3.1vw + 1rem, 3.4rem);
+            letter-spacing: -0.035em;
+            font-weight: 700;
+            line-height: 1.06;
+            margin-bottom: 1rem;
+        }
+
+        .hero-heading span {
+            background: linear-gradient(120deg, #e5e7eb, #a5b4fc, #6ee7b7);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-subtitle {
+            max-width: 30rem;
+            font-size: 0.98rem;
+            color: var(--text-soft);
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.4rem;
+            align-items: center;
+            margin-top: 1.4rem;
+        }
+
+        .hero-meta-item {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-meta-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent-secondary);
+            box-shadow: 0 0 18px rgba(34, 197, 94, 0.9);
+        }
+
+        .hero-right {
+            position: relative;
+        }
+
+        .hero-card {
+            position: relative;
+            background: radial-gradient(circle at 0 0, rgba(251, 191, 36, 0.18), transparent 55%),
+                radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.18), transparent 55%),
+                rgba(15, 23, 42, 0.96);
+            border-radius: var(--radius-xl);
+            padding: 1.35rem 1.35rem 1.4rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .hero-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.9rem;
+        }
+
+        .hero-card-kpi {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+
+        .hero-card-kpi-label {
+            font-size: 0.7rem;
+            color: var(--text-soft);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .hero-card-kpi-value {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .hero-card-kpi-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.18rem 0.55rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            background: rgba(22, 163, 74, 0.18);
+            color: #bbf7d0;
+        }
+
+        .hero-card-env {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text-soft);
+        }
+
+        .hero-card-env span {
+            color: #a5b4fc;
+        }
+
+        .hero-card-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .hero-metric-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.65rem;
+        }
+
+        .hero-metric {
+            padding: 0.65rem 0.75rem;
+            border-radius: 14px;
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(148, 163, 184, 0.45);
+        }
+
+        .hero-metric-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-soft);
+            margin-bottom: 0.18rem;
+        }
+
+        .hero-metric-value {
+            font-size: 0.92rem;
+            font-weight: 500;
+        }
+
+        .hero-metric-helper {
+            font-size: 0.72rem;
+            color: var(--accent-secondary);
+            margin-top: 0.05rem;
+        }
+
+        .hero-chart {
+            border-radius: 14px;
+            border: 1px dashed rgba(148, 163, 184, 0.5);
+            padding: 0.6rem 0.7rem;
+            background: rgba(15, 23, 42, 0.88);
+        }
+
+        .hero-chart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.72rem;
+            margin-bottom: 0.4rem;
+            color: var(--text-soft);
+        }
+
+        .hero-chart-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .hero-chart-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+        }
+
+        .hero-chart-bars {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.3rem;
+            height: 80px;
+        }
+
+        .hero-chart-bar {
+            flex: 1;
+            border-radius: 999px;
+            background: linear-gradient(to top, rgba(55, 65, 81, 0.8), rgba(55, 65, 81, 0.05));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-chart-bar-fill {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 999px;
+            background: linear-gradient(180deg, #4f46e5, #22c55e);
+        }
+
+        .hero-card-footer {
+            margin-top: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+
+        .hero-card-users {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-card-avatars {
+            display: flex;
+        }
+
+        .hero-card-avatar {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, 0.95);
+            background-size: cover;
+            background-position: center;
+            background-image: linear-gradient(135deg, #6ee7b7, #4f46e5);
+            margin-left: -6px;
+        }
+
+        .hero-card-avatar:first-child {
+            margin-left: 0;
+        }
+
+        .hero-card-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.55rem;
+            border-radius: 999px;
+            background: rgba(22, 163, 74, 0.22);
+            color: #bbf7d0;
+        }
+
+        .hero-orbit {
+            position: absolute;
+            inset: -65px;
+            pointer-events: none;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+            filter: blur(0.2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 2.5rem 0 1rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 1rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .section-title-block {
+            max-width: 25rem;
+        }
+
+        .eyebrow {
+            font-size: 0.77rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--accent-secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        .section-title {
+            font-size: 1.4rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+        }
+
+        .section-description {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+        }
+
+        /* Logos / social proof */
+        .logos-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.1rem;
+            align-items: center;
+            padding: 1rem 1.2rem;
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            margin-top: 1.8rem;
+        }
+
+        .logos-row-label {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+        }
+
+        .logo-pill {
+            padding: 0.35rem 0.75rem;
+            font-size: 0.78rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.4);
+            color: var(--text-soft);
+        }
+
+        /* Features */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .feature-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-lg);
+            padding: 1.1rem 1.1rem 1.05rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.8);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            background: radial-gradient(circle at 30% 0, #22c55e, #4f46e5);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .feature-title {
+            font-size: 0.96rem;
+            font-weight: 500;
+        }
+
+        .feature-text {
+            font-size: 0.85rem;
+            color: var(--text-soft);
+        }
+
+        .feature-meta {
+            margin-top: 0.3rem;
+            font-size: 0.78rem;
+            color: var(--accent-strong);
+        }
+
+        /* Product section */
+        .product-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+            gap: 1.7rem;
+        }
+
+        .product-panel {
+            background: var(--bg-soft);
+            border-radius: var(--radius-xl);
+            padding: 1.2rem 1.3rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .product-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.9rem;
+        }
+
+        .product-tab {
+            flex: 1;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 0.45rem 0.75rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            color: var(--text-soft);
+        }
+
+        .product-tab--active {
+            background: rgba(79, 70, 229, 0.18);
+            border-color: rgba(129, 140, 248, 0.9);
+            color: #e0e7ff;
+        }
+
+        .product-screenshot {
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.14), transparent 55%),
+                #020617;
+            padding: 0.8rem;
+            min-height: 180px;
+        }
+
+        .product-skeleton-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-skeleton-title {
+            width: 120px;
+            height: 10px;
+            border-radius: 999px;
+            background: rgba(30, 64, 175, 0.75);
+        }
+
+        .product-skeleton-badges {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .product-skeleton-badge {
+            width: 36px;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(30, 64, 175, 0.4);
+        }
+
+        .product-skeleton-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 0.6rem;
+            align-items: flex-start;
+        }
+
+        .product-skeleton-chart,
+        .product-skeleton-list {
+            border-radius: 14px;
+            border: 1px solid rgba(30, 64, 175, 0.65);
+            background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.16), transparent 55%),
+                rgba(15, 23, 42, 0.95);
+            padding: 0.5rem 0.55rem;
+            min-height: 88px;
+        }
+
+        .product-skeleton-chart-bars {
+            display: flex;
+            gap: 0.35rem;
+            align-items: flex-end;
+            height: 56px;
+        }
+
+        .product-skeleton-chart-bar {
+            flex: 1;
+            border-radius: 999px;
+            background: linear-gradient(to top, rgba(59, 130, 246, 0.85), rgba(30, 64, 175, 0.4));
+        }
+
+        .product-skeleton-list-row {
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(30, 64, 175, 0.6);
+            margin-bottom: 0.35rem;
+        }
+
+        .product-skeleton-list-row:last-child {
+            width: 70%;
+        }
+
+        .product-copy-list {
+            margin-top: 0.35rem;
+            font-size: 0.86rem;
+            color: var(--text-soft);
+        }
+
+        .product-copy-list li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Stats */
+        .stat-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .stat-card {
+            padding: 1rem 1.1rem;
+            border-radius: var(--radius-lg);
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .stat-helper {
+            font-size: 0.78rem;
+            color: var(--accent-strong);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.1rem;
+        }
+
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-xl);
+            padding: 1.2rem 1.1rem 1.1rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .pricing-featured {
+            background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.24), transparent 55%),
+                rgba(15, 23, 42, 0.96);
+            border-color: rgba(96, 165, 250, 1);
+            box-shadow: var(--shadow-soft);
+            transform: translateY(-4px);
+        }
+
+        .pricing-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .pricing-tag {
+            font-size: 0.75rem;
+            color: var(--accent-secondary);
+        }
+
+        .pricing-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .pricing-price span {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+            font-weight: 400;
+        }
+
+        .pricing-summary {
+            font-size: 0.83rem;
+            color: var(--text-soft);
+        }
+
+        .pricing-list {
+            margin: 0.2rem 0 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .pricing-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .badge-small {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.16rem 0.5rem;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            font-size: 0.7rem;
+            color: var(--text-soft);
+        }
+
+        /* Testimonials & FAQ */
+        .two-column {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: var(--radius-xl);
+            padding: 1.1rem 1.15rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .testimonial-quote {
+            font-size: 0.9rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+
+        .testimonial-author span {
+            color: var(--accent-secondary);
+        }
+
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .faq-item {
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: rgba(15, 23, 42, 0.9);
+            overflow: hidden;
+        }
+
+        .faq-header {
+            padding: 0.6rem 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .faq-title {
+            font-size: 0.86rem;
+        }
+
+        .faq-toggle {
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            font-size: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-soft);
+        }
+
+        .faq-body {
+            padding: 0 0.8rem 0.6rem;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+            display: none;
+        }
+
+        .faq-item--open .faq-body {
+            display: block;
+        }
+
+        .faq-item--open .faq-toggle {
+            background: rgba(129, 140, 248, 0.2);
+            border-color: rgba(129, 140, 248, 1);
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+            gap: 1.5rem;
+        }
+
+        .contact-card {
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: var(--radius-xl);
+            padding: 1.1rem 1.2rem 1.2rem;
+            border: 1px solid rgba(148, 163, 184, 0.5);
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 0.7rem;
+            margin-bottom: 0.65rem;
+            font-size: 0.82rem;
+            color: var(--text-soft);
+        }
+
+        .contact-row-label {
+            min-width: 70px;
+            color: var(--text);
+        }
+
+        form {
+            display: grid;
+            gap: 0.45rem;
+        }
+
+        label {
+            font-size: 0.78rem;
+            color: var(--text-soft);
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 0.55rem 0.7rem;
+            border-radius: 10px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            background: rgba(15, 23, 42, 0.9);
+            color: var(--text);
+            font-size: 0.84rem;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(148, 163, 184, 0.75);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: rgba(129, 140, 248, 1);
+            box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.9);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.4rem;
+        }
+
+        .form-footnote {
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2.5rem 0 0.5rem;
+        }
+
+        .footer-inner {
+            padding: 1.2rem 1.4rem;
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(148, 163, 184, 0.5);
+            background: radial-gradient(circle at 0 0, rgba(99, 102, 241, 0.28), transparent 55%),
+                rgba(15, 23, 42, 0.98);
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+            gap: 1.4rem;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem 1.2rem;
+            font-size: 0.8rem;
+            color: var(--text-soft);
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        .footer-meta {
+            margin-top: 0.7rem;
+            font-size: 0.78rem;
+            color: var(--text-soft);
+        }
+
+        .footer-meta span {
+            color: var(--accent-secondary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .footer-social a {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.6);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: var(--text-soft);
+        }
+
+        .footer-social a:hover {
+            color: var(--text);
+            border-color: rgba(209, 213, 219, 0.95);
+        }
+
+        .footer-bottom {
+            margin-top: 1.2rem;
+            font-size: 0.75rem;
+            color: var(--text-soft);
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            right: 1.4rem;
+            bottom: 1.4rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: rgba(15, 23, 42, 0.9);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+            cursor: pointer;
+            box-shadow: 0 12px 30px rgba(15, 23, 42, 0.9);
+            z-index: 50;
+        }
+
+        .back-to-top--visible {
+            display: flex;
+        }
+
+        /* Light theme */
+        body.theme-light {
+            background: radial-gradient(circle at top, #eff6ff 0, #f9fafb 40%, #f1f5f9 100%);
+            color: #020617;
+        }
+
+        body.theme-light header {
+            background: linear-gradient(to bottom,
+                    rgba(248, 250, 252, 0.98),
+                    rgba(248, 250, 252, 0.9),
+                    transparent);
+            border-bottom-color: rgba(148, 163, 184, 0.4);
+        }
+
+        body.theme-light .hero-card,
+        body.theme-light .feature-card,
+        body.theme-light .product-panel,
+        body.theme-light .product-screenshot,
+        body.theme-light .stat-card,
+        body.theme-light .pricing-card,
+        body.theme-light .testimonial-card,
+        body.theme-light .faq-item,
+        body.theme-light .contact-card,
+        body.theme-light .logos-row,
+        body.theme-light .footer-inner {
+            background: #ffffff;
+            border-color: rgba(148, 163, 184, 0.45);
+        }
+
+        body.theme-light .btn-ghost {
+            background: #f9fafb;
+            color: #111827;
+            border-color: rgba(148, 163, 184, 0.75);
+        }
+
+        body.theme-light input,
+        body.theme-light textarea {
+            background: #ffffff;
+            color: #111827;
+        }
+
+        body.theme-light .nav-links a {
+            color: #4b5563;
+        }
+
+        body.theme-light .nav-links a:hover {
+            color: #111827;
+        }
+
+        body.theme-light .theme-toggle {
+            background: radial-gradient(circle at 30% 0, rgba(59, 130, 246, 0.3), #f9fafb);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-right {
+                order: -1;
+            }
+
+            .product-layout,
+                {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .footer-inner {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .contact-grid,
+            .two-column {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 800px) {
+            .nav-links,
+            .nav-cta {
+                display: none;
+            }
+
+            .nav-mobile-toggle {
+                display: inline-flex;
+            }
+
+            .nav-mobile-menu {
+                display: none;
+                flex-direction: column;
+                gap: 0.6rem;
+                padding: 0.75rem 0 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .nav-mobile-menu a {
+                padding: 0.35rem 0;
+                color: var(--text-soft);
+            }
+
+            .nav-mobile-menu a:hover {
+                color: var(--text);
+            }
+
+            .nav-mobile-menu .mobile-cta-row {
+                display: flex;
+                gap: 0.5rem;
+                margin-top: 0.3rem;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .feature-grid,
+            .pricing-grid,
+            .stat-row {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .page-shell {
+                padding-inline: 1.1rem;
+            }
+
+            .hero {
+                padding-top: 2.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-heading {
+                font-size: 2.05rem;
+            }
+
+            .footer-inner {
+                padding-inline: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="page-shell nav">
+            <div class="logo-mark">
+                <div class="logo-icon"></div>
+                <div>
+                    <div class="logo-text-main">Veltrynox</div>
+                    <div class="logo-text-tagline">software studio</div>
+                </div>
+            </div>
+
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#hero">Platform</a>
+                <a href="#features">Features</a>
+                <a href="#product">Product</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="nav-cta">
+                <div class="nav-badge">
+                    <span class="nav-badge-dot"></span>
+                    <span>Live in production · v2026.1</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    ☾
+                </button>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Book demo
+                </button>
+            </div>
+
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                ☰
+            </button>
+        </div>
+
+        <div class="page-shell nav-mobile-menu" id="mobileMenu">
+            <a href="#hero">Platform</a>
+            <a href="#features">Features</a>
+            <a href="#product">Product</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+            <div class="mobile-cta-row">
+                <button class="btn btn-ghost" onclick="document.getElementById('pricing').scrollIntoView({behavior:'smooth'})">
+                    View pricing
+                </button>
+                <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                    Book demo
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-shell">
+        <!-- Hero -->
+        <section id="hero" class="hero" aria-labelledby="hero-title">
+            <div>
+                <div class="hero-badge">
+                    <span class="hero-badge-pill">AI-native platform</span>
+                    <span>From prototype to planet scale</span>
+                </div>
+
+                <h1 id="hero-title" class="hero-heading">
+                    Ship modern products <span>10× faster</span> with Veltrynox.
+                </h1>
+
+                <p class="hero-subtitle">
+                    Veltrynox is your project‑based software delivery partner. We scope, build,
+                    and ship custom products end‑to‑end so your sales team can say “yes” to more
+                    opportunities – without overloading your in‑house engineers.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-primary"
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                        Talk to our team →</button>
+                    <button class="btn btn-ghost" onclick="document.getElementById('product').scrollIntoView({behavior:'smooth'})">
+                        Explore the platform
+                    </button>
+                </div>
+
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="hero-meta-dot"></span>
+                        <span>SLAs up to 99.99% uptime</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span>Security-first · SOC2-ready</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span>Global teams in <strong>4</strong> time zones</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right" aria-hidden="true">
+                <div class="hero-card">
+                    <svg class="hero-orbit" viewBox="0 0 400 260" aria-hidden="true">
+                        <defs>
+                            <radialGradient id="g1" cx="0.1" cy="0.1">
+                                <stop offset="0" stop-color="#4f46e5" stop-opacity="0.9" />
+                                <stop offset="1" stop-color="#0b1120" stop-opacity="0" />
+                            </radialGradient>
+                        </defs>
+                        <circle cx="60" cy="40" r="120" fill="url(#g1)" />
+                        <circle cx="320" cy="210" r="110" fill="url(#g1)" />
+                    </svg>
+
+                    <div class="hero-card-header">
+                        <div class="hero-card-kpi">
+                            <span class="hero-card-kpi-label">Deploy velocity</span>
+                            <span class="hero-card-kpi-value">34 → 320</span>
+                            <span class="hero-card-kpi-pill">+9.4× faster shipping</span>
+                        </div>
+                        <div class="hero-card-env">
+                            Environment:
+                            <span>Production · us-east‑1</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-body">
+                        <div class="hero-metric-grid">
+                            <div class="hero-metric">
+                                <div class="hero-metric-label">Lead time</div>
+                                <div class="hero-metric-value">24 min</div>
+                                <div class="hero-metric-helper">↓ 81% vs last quarter</div>
+                            </div>
+                            <div class="hero-metric">
+                                <div class="hero-metric-label">Incidents</div>
+                                <div class="hero-metric-value">0.03%</div>
+                                <div class="hero-metric-helper">Automated rollback in < 30s</div>
+                            </div>
+                            <div class="hero-metric">
+                                <div class="hero-metric-label">Latency (p95)</div>
+                                <div class="hero-metric-value">112 ms</div>
+                                <div class="hero-metric-helper">Global edge caching enabled</div>
+                            </div>
+                            <div class="hero-metric">
+                                <div class="hero-metric-label">AI automation</div>
+                                <div class="hero-metric-value">68%</div>
+                                <div class="hero-metric-helper">Of pipeline handled by AI</div>
+                            </div>
+                        </div>
+
+                        <div class="hero-chart">
+                            <div class="hero-chart-header">
+                                <span>Delivery health · Last 30 days</span>
+                                <div class="hero-chart-dots">
+                                    <span class="hero-chart-dot" style="background:#4f46e5"></span>
+                                    <span class="hero-chart-dot" style="background:#22c55e"></span>
+                                    <span class="hero-chart-dot" style="background:#f97316"></span>
+                                </div>
+                            </div>
+                            <div class="hero-chart-bars">
+                                <div class="hero-chart-bar">
+                                    <div class="hero-chart-bar-fill" style="height:52%"></div>
+                                </div>
+                                <div class="hero-chart-bar">
+                                    <div class="hero-chart-bar-fill" style="height:68%"></div>
+                                </div>
+                                <div class="hero-chart-bar">
+                                    <div class="hero-chart-bar-fill" style="height:83%"></div>
+                                </div>
+                                <div class="hero-chart-bar">
+                                    <div class="hero-chart-bar-fill" style="height:72%"></div>
+                                </div>
+                                <div class="hero-chart-bar">
+                                    <div class="hero-chart-bar-fill" style="height:94%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-card-footer">
+                        <div class="hero-card-users">
+                            <div class="hero-card-avatars">
+                                <div class="hero-card-avatar"></div>
+                                <div class="hero-card-avatar"></div>
+                                <div class="hero-card-avatar"></div>
+                            </div>
+                            <span>2,400+ product teams on Veltrynox</span>
+                        </div>
+                        <div class="hero-card-status">
+                            <span class="hero-meta-dot"></span>
+                            <span>Realtime observability enabled</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Logos / social proof -->
+        <section aria-label="Customer logos">
+            <div class="logos-row">
+                <div class="logos-row-label">Trusted by engineering‑led companies worldwide:</div>
+                <div class="logo-pill">Arcadia Cloud</div>
+                <div class="logo-pill">Nova Commerce</div>
+                <div class="logo-pill">Helix Health</div>
+                <div class="logo-pill">Orion Finance</div>
+                <div class="logo-pill">Atlas Mobility</div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" aria-labelledby="features-title">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="eyebrow">Why teams choose Veltrynox</div>
+                    <h2 class="section-title" id="features-title">
+                        All the capabilities of a modern software company. None of the overhead.
+                    </h2>
+                    <p class="section-description">
+                        From idea validation to production roll‑out, Veltrynox gives your team a
+                        battle‑tested stack, senior engineers, and AI copilots that scale with your
+                        roadmap.
+                    </p>
+                </div>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3 class="feature-title">Product strategy & discovery</h3>
+                    <p class="feature-text">
+                        Align stakeholders, validate assumptions, and design user journeys with our
+                        discovery sprints and UX research playbooks.
+                    </p>
+                    <p class="feature-meta">Outcome: validated roadmap in 2 weeks.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3 class="feature-title">AI‑powered engineering pods</h3>
+                    <p class="feature-text">
+                        Cross‑functional squads augmented by AI agents deliver features, tests,
+                        observability, and documentation in one loop.
+                    </p>
+                    <p class="feature-meta">Outcome: 10× more throughput per engineer.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3 class="feature-title">Enterprise‑grade reliability</h3>
+                    <p class="feature-text">
+                        Built‑in observability, incident response runbooks, and zero‑downtime
+                        deployments keep your platform resilient.
+                    </p>
+                    <p class="feature-meta">Outcome: 99.99% uptime targets achievable.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Product -->
+        <section id="product" aria-labelledby="product-title">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="eyebrow">The Veltrynox platform</div>
+                    <h2 class="section-title" id="product-title">
+                        One control center for your entire software lifecycle.
+                    </h2>
+                    <p class="section-description">
+                        Track initiatives, orchestrate releases, and monitor health in a single,
+                        AI‑aware workspace that plugs into your existing tools.
+                    </p>
+                </div>
+                <div>
+                    <span class="badge-small">Integrates with GitHub · Jira · Linear · Slack</span>
+                </div>
+            </div>
+
+            <div class="product-layout">
+                <div class="product-panel" aria-hidden="true">
+                    <div class="product-tabs">
+                        <div class="product-tab product-tab--active">Delivery</div>
+                        <div class="product-tab">Reliability</div>
+                        <div class="product-tab">Intelligence</div>
+                    </div>
+                    <div class="product-screenshot">
+                        <div class="product-skeleton-header">
+                            <div class="product-skeleton-title"></div>
+                            <div class="product-skeleton-badges">
+                                <div class="product-skeleton-badge"></div>
+                                <div class="product-skeleton-badge"></div>
+                            </div>
+                        </div>
+                        <div class="product-skeleton-grid">
+                            <div class="product-skeleton-chart">
+                                <div class="product-skeleton-chart-bars">
+                                    <div class="product-skeleton-chart-bar" style="height: 25%"></div>
+                                    <div class="product-skeleton-chart-bar" style="height: 55%"></div>
+                                    <div class="product-skeleton-chart-bar" style="height: 75%"></div>
+                                    <div class="product-skeleton-chart-bar" style="height: 50%"></div>
+                                </div>
+                            </div>
+                            <div class="product-skeleton-list">
+                                <div class="product-skeleton-list-row"></div>
+                                <div class="product-skeleton-list-row"></div>
+                                <div class="product-skeleton-list-row"></div>
+                                <div class="product-skeleton-list-row"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <ul class="product-copy-list">
+                        <li><strong>Unified delivery view.</strong> See every initiative, epic, and
+                            deployment in a single timeline.</li>
+                        <li><strong>Adaptive AI copilots.</strong> Agents propose rollouts, write
+                            migration plans, and keep documentation up‑to‑date.</li>
+                        <li><strong>Guardrails by default.</strong> Policy‑as‑code for security,
+                            compliance, and architecture decisions.</li>
+                        <li><strong>Human‑in‑the‑loop.</strong> Your engineers stay in control, our
+                            automation handles the repetitive work.</li>
+                    </ul>
+
+                    <div style="margin-top:0.9rem;font-size:0.82rem;color:var(--text-soft);">
+                        Prefer to keep your stack? Veltrynox layers on top of your tools rather than
+                        replacing them, so you can adopt the platform incrementally.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section aria-label="Key metrics">
+            <div class="stat-row">
+                <div class="stat-card">
+                    <div class="stat-label">Average time‑to‑market</div>
+                    <div class="stat-value">12 weeks</div>
+                    <div class="stat-helper">From kickoff to first production release.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Engineering cost efficiency</div>
+                    <div class="stat-value">–38%</div>
+                    <div class="stat-helper">Blend internal teams with our pods & agents.</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Customer NPS uplift</div>
+                    <div class="stat-value">+24</div>
+                    <div class="stat-helper">Better velocity, quality, and reliability.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Engagement models -->
+        <section id="pricing" aria-labelledby="pricing-title">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="eyebrow">How we work</div>
+                    <h2 class="section-title" id="pricing-title">
+                        Flexible engagement models for project‑based work.
+                    </h2>
+                    <p class="section-description">
+                        We’re a delivery partner, not a SaaS product. Every engagement is scoped
+                        around your pipeline, timelines, and budget – then executed by a senior
+                        team that owns outcomes with you.
+                    </p>
+                </div>
+                <div>
+                    <span class="badge-small">Project‑based · Transparent scopes · No long‑term lock‑in</span>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <article class="pricing-card">
+                    <div class="pricing-name">Project delivery</div>
+                    <div class="pricing-tag">Fixed‑scope builds</div>
+                    <p class="pricing-summary">
+                        Ideal when you’ve already sold a project and need a trusted team to take it
+                        from signed contract to “go‑live”.
+                    </p>
+                    <ul class="pricing-list">
+                        <li>We co‑define scope, milestones, and acceptance criteria.</li>
+                        <li>Clear delivery timeline with weekly check‑ins.</li>
+                        <li>Fixed price per project, agreed up‑front.</li>
+                        <li>Handover, documentation, and knowledge transfer included.</li>
+                    </ul>
+                    <button class="btn btn-ghost"
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Discuss a
+                        project</button>
+                </article>
+
+                <article class="pricing-card pricing-featured">
+                    <div class="pricing-name">Dedicated squad</div>
+                    <div class="pricing-tag">Your on‑demand product team</div>
+                    <p class="pricing-summary">
+                        When you need a stable group of seniors that can take multiple projects or
+                        accounts from discovery to launch.
+                    </p>
+                    <ul class="pricing-list">
+                        <li>Cross‑functional pod (PM, design, engineering).</li>
+                        <li>Shared backlog across your customers or internal stakeholders.</li>
+                        <li>Rolling scopes per quarter with outcome‑based targets.</li>
+                        <li>Blends seamlessly with your sales and account teams.</li>
+                    </ul>
+                    <button class="btn btn-primary"
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a
+                        scoping call →</button>
+                </article>
+
+                <article class="pricing-card">
+                    <div class="pricing-name">Advisory & audits</div>
+                    <div class="pricing-tag">For complex opportunities</div>
+                    <p class="pricing-summary">
+                        Support your sales and leadership team with deep technical due diligence,
+                        architecture reviews, and growth audits.
+                    </p>
+                    <ul class="pricing-list">
+                        <li>Technical discovery and proposal support.</li>
+                        <li>Architecture & implementation recommendations.</li>
+                        <li>Risk assessment and delivery roadmap.</li>
+                        <li>Can be bundled into a follow‑on build project.</li>
+                    </ul>
+                    <button class="btn btn-ghost"
+                        onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact
+                        sales</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Testimonials & FAQ -->
+        <section aria-labelledby="voices-title">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="eyebrow">What teams say</div>
+                    <h2 class="section-title" id="voices-title">
+                        Real impact for modern software organizations.
+                    </h2>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <article class="testimonial-card">
+                    <p class="testimonial-quote">
+                        “Veltrynox feels like a fully staffed product org you can spin up on demand.
+                        We went from idea to a compliant, global‑ready platform without hiring a
+                        dozen roles.”
+                    </p>
+                    <p class="testimonial-author">
+                        Alex Rivera · VP Engineering, <span>Orion Finance</span>
+                    </p>
+                </article>
+
+                <div class="faq-list" aria-label="Frequently asked questions">
+                    <div class="faq-item">
+                        <button class="faq-header" type="button">
+                            <span class="faq-title">How does Veltrynox work with our existing
+                                team?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-body">
+                            We embed small, senior pods alongside your engineers, then layer in AI
+                            agents for repetitive work. You stay in control of the roadmap and
+                            architecture; we accelerate execution.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-header" type="button">
+                            <span class="faq-title">Can we use our current stack and tools?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-body">
+                            Yes. We integrate with your Git provider, issue tracker, design system,
+                            and observability stack. Our default stack is there if you want to move
+                            faster, but it’s optional.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-header" type="button">
+                            <span class="faq-title">What does onboarding look like?</span>
+                            <span class="faq-toggle">+</span>
+                        </button>
+                        <div class="faq-body">
+                            A typical onboarding includes a discovery workshop, stack review, and
+                            2‑week pilot initiative. From there we calibrate scope, SLAs, and
+                            automation depth based on what you care about most.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="section-header">
+                <div class="section-title-block">
+                    <div class="eyebrow">Contact</div>
+                    <h2 class="section-title" id="contact-title">
+                        Tell us about your roadmap.
+                    </h2>
+                    <p class="section-description">
+                        Share a bit about your product, team, and timelines. We’ll follow up within
+                        one business day with next steps and a tailored proposal.
+                    </p>
+                </div>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-row">
+                        <div class="contact-row-label">Email</div>
+                        <div>hello@veltrynox.com</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-row-label">HQ</div>
+                        <div>Remote‑first · Operating across EU, US, and APAC</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-row-label">Working with</div>
+                        <div>Seed to Series‑D startups, innovation units, and scale‑ups.</div>
+                    </div>
+                </div>
+
+                <form id="contactForm" aria-label="Contact form">
+                    <div class="form-row">
+                        <div>
+                            <label for="name">Full name</label>
+                            <input id="name" name="name" type="text" autocomplete="name" required
+                                placeholder="Jane Doe" />
+                        </div>
+                        <div>
+                            <label for="company">Company</label>
+                            <input id="company" name="company" type="text" autocomplete="organization"
+                                placeholder="Acme Inc." />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="email">Work email</label>
+                            <input id="email" name="email" type="email" autocomplete="email" required
+                                placeholder="you@company.com" />
+                        </div>
+                        <div>
+                            <label for="role">Your role</label>
+                            <input id="role" name="role" type="text" placeholder="CTO, Product Lead, Founder…" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="timeline">Timeline</label>
+                        <input id="timeline" name="timeline" type="text"
+                            placeholder="e.g. “Ship MVP in 3 months”" />
+                    </div>
+
+                    <div>
+                        <label for="message">What are you building?</label>
+                        <textarea id="message" name="message" required
+                            placeholder="Share a few lines about your product, users, and goals."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit inquiry</button>
+                    <p id="contactStatus" class="form-footnote" aria-live="polite"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="page-shell">
+            <div class="footer-inner">
+                <div>
+                    <div class="logo-mark" style="margin-bottom:0.5rem;">
+                        <div class="logo-icon"></div>
+                        <div>
+                            <div class="logo-text-main">Veltrynox</div>
+                            <div class="logo-text-tagline">modern software company</div>
+                        </div>
+                    </div>
+                    <div class="footer-meta">
+                        Building <span>AI‑native</span> software products for ambitious teams.
+                    </div>
+                    <div class="footer-meta">
+                        Currently accepting new partners for Q2 2026.
+                    </div>
+                </div>
+
+                <div>
+                    <div class="footer-links">
+                        <a href="#hero">Platform</a>
+                        <a href="#features">Capabilities</a>
+                        <a href="#pricing">Engagement models</a>
+                        <a href="#contact">Get in touch</a>
+                        <a href="mailto:hello@veltrynox.com">Email us</a>
+                    </div>
+                    <div style="margin-top:0.8rem;display:flex;align-items:center;gap:0.6rem;">
+                        <div class="footer-social">
+                            <a href="#" aria-label="GitHub">GH</a>
+                            <a href="#" aria-label="LinkedIn">in</a>
+                            <a href="#" aria-label="X / Twitter">X</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <span>© 2026 Veltrynox. All rights reserved.</span>
+                <span>Made with care for modern software teams.</span>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
