@@ -5,6 +5,7 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'change-this-password';
 
 // --- Simple file-based "database" (JSON) ---
 const dataPath = path.join(__dirname, 'contact_submissions.json');
@@ -89,6 +90,18 @@ app.get('/api/health', (req, res) => {
 
 // Temporary endpoint to view saved inquiries
 app.get('/api/submissions', (req, res) => {
+  const providedPassword =
+    req.query.password ||
+    req.headers['x-admin-password'] ||
+    '';
+
+  if (providedPassword !== ADMIN_PASSWORD) {
+    return res.status(401).json({
+      ok: false,
+      error: 'Unauthorized. Provide a valid admin password.',
+    });
+  }
+
   try {
     const submissions = readSubmissions();
     return res.json({
