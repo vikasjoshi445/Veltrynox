@@ -26,8 +26,14 @@ function writeSubmissions(list) {
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend (index.html, styles, scripts, etc.)
-app.use(express.static(__dirname));
+// Serve built React frontend if present (Render)
+const reactDist = path.join(__dirname, 'frontend', 'dist');
+if (fs.existsSync(reactDist)) {
+  app.use(express.static(reactDist));
+} else {
+  // Serve legacy static files in repo root (local dev / InfinityFree flow)
+  app.use(express.static(__dirname));
+}
 
 // Contact endpoint: stores submissions in JSON file
 app.post('/api/contact', (req, res) => {
@@ -75,7 +81,10 @@ app.post('/api/contact', (req, res) => {
 // Fallback to index.html for any unknown GET route (optional)
 app.use((req, res, next) => {
   if (req.method !== 'GET') return next();
-  res.sendFile(path.join(__dirname, 'index.html'));
+  if (fs.existsSync(path.join(reactDist, 'index.html'))) {
+    return res.sendFile(path.join(reactDist, 'index.html'));
+  }
+  return res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(PORT, () => {
