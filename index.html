@@ -75,15 +75,15 @@
         }
 
         header {
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 40;
-            backdrop-filter: blur(18px);
-            background: linear-gradient(to bottom,
-                    rgba(15, 23, 42, 0.9),
-                    rgba(15, 23, 42, 0.7),
-                    transparent);
-            border-bottom: 1px solid rgba(30, 64, 175, 0.6);
+            left: 0;
+            right: 0;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            background: rgba(2, 6, 23, 0.92);
+            border-bottom: 1px solid rgba(30, 64, 175, 0.65);
+            box-shadow: 0 8px 24px rgba(2, 6, 23, 0.45);
         }
 
         .nav {
@@ -1148,11 +1148,9 @@
         }
 
         body.theme-light header {
-            background: linear-gradient(to bottom,
-                    rgba(248, 250, 252, 0.98),
-                    rgba(248, 250, 252, 0.9),
-                    transparent);
-            border-bottom-color: rgba(148, 163, 184, 0.4);
+            background: rgba(248, 250, 252, 0.96);
+            border-bottom-color: rgba(148, 163, 184, 0.5);
+            box-shadow: 0 8px 20px rgba(148, 163, 184, 0.2);
         }
 
         body.theme-light .hero-card,
