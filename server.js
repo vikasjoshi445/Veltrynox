@@ -78,6 +78,32 @@ app.post('/api/contact', (req, res) => {
   });
 });
 
+// Quick diagnostics endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    ok: true,
+    storage: 'json-file',
+    dataPath,
+  });
+});
+
+// Temporary endpoint to view saved inquiries
+app.get('/api/submissions', (req, res) => {
+  try {
+    const submissions = readSubmissions();
+    return res.json({
+      ok: true,
+      count: submissions.length,
+      submissions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      ok: false,
+      error: 'Could not read submissions.',
+    });
+  }
+});
+
 // Fallback to index.html for any unknown GET route (optional)
 app.use((req, res, next) => {
   if (req.method !== 'GET') return next();
